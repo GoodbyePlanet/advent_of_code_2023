@@ -1,5 +1,5 @@
 def main():
-    with open("input.txt", "r") as file:
+    with open("first/first_day_input.txt", "r") as file:
         num_sum = 0
 
         for line in file:
