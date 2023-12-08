@@ -1,4 +1,7 @@
-def main():
+from file_utils.read_file import read_file
+
+
+def main(file):
     map = {
         "one": 1,
         "two": 2,
@@ -12,27 +15,29 @@ def main():
     }
     sum = 0
 
-    with open("second_day_input.txt", "r") as file:
-        for line in file.read().strip().split("\n"):
-            first = None
-            second = None
-            s = ""
-            for char in line:
-                d = None
-                if char.isdigit():
-                    d = char
-                else:
-                    s += char
-                    for k, v in map.items():
-                        if s.endswith(k):
-                            d = str(v)
-                if d is not None:
-                    second = d
-                    if first is None:
-                        first = d
-            sum += int(first + second)
-            print(sum)
+    for line in file.strip().split("\n"):
+        first = None
+        second = None
+        s = ""
+        for char in line:
+            d = None
+            if char.isdigit():
+                d = char
+            else:
+                s += char
+                for k, v in map.items():
+                    if s.endswith(k):
+                        d = str(v)
+            if d is not None:
+                second = d
+                if first is None:
+                    first = d
+        sum += int(first + second)
+
+    print(f"Sum is: {sum}")
+    return sum
+
 
 if __name__ == "__main__":
-    main()
-
+    input_file = read_file("second_day_input.txt")
+    main(input_file)
