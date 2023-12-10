@@ -5,7 +5,7 @@ def main(engine_schematic):
     line = engine_schematic.strip().split('\n')
     num_rows = len(line)
     num_columns = len(line[0])
-    part_numbers = []
+    gear_numbers = [[[] for _ in range(num_columns)] for _ in range(num_rows)]
 
     for i, row in enumerate(line):
         num = ""
@@ -26,15 +26,26 @@ def main(engine_schematic):
                         # if it's out of range continue
                         if r < 0 or r >= num_rows or c < 0 or c >= num_columns or line[r][c].isdigit():
                             continue
-                        if line[r][c] != "." and not line[r][c].isdigit():
-                            part_numbers.append(int(num))
+                        if line[r][c] == "*":
+                            gear_numbers[r][c].append(num)
                 num = ""
                 first_digit_index = None
-    print("LINE DONE \n", part_numbers)
-    return sum(part_numbers)
+
+    sum_of_gears = 0
+
+    for i in range(num_rows):
+        for j in range(num_columns):
+            part_nums = gear_numbers[i][j]
+            if line[i][j] == "*" and len(part_nums) == 2:
+                gear_ratio = int(part_nums[0]) * int(part_nums[1])
+                sum_of_gears += gear_ratio
+
+    print("ANSWER", sum_of_gears)
+    print(gear_numbers)
+    return sum_of_gears
 
 
 if __name__ == "__main__":
-    engine_schematic = read_file("third_day_first_input.txt")
+    engine_schematic = read_file("third_day_second_input.txt")
     result = main(engine_schematic)
     print(result)
