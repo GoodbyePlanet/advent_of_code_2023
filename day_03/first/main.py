@@ -30,7 +30,7 @@ def main(engine_schematic):
                             part_numbers.append(int(num))
                 num = ""
                 first_digit_index = None
-    print("LINE DONE \n", part_numbers)
+
     return sum(part_numbers)
 
 

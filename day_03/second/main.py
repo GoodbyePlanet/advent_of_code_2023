@@ -40,8 +40,6 @@ def main(engine_schematic):
                 gear_ratio = int(part_nums[0]) * int(part_nums[1])
                 sum_of_gears += gear_ratio
 
-    print("ANSWER", sum_of_gears)
-    print(gear_numbers)
     return sum_of_gears
 
 
