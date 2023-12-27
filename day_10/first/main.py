@@ -97,6 +97,6 @@ def main(grid_input):
 
 
 if __name__ == "__main__":
-    pipe_maze = read_file("first/day_10_first_input.txt")
+    pipe_maze = read_file("first/day_11_second_input.txt")
     max_steps = main(pipe_maze)
     print(max_steps)
